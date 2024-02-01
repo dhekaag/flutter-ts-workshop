@@ -12,7 +12,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.deletedUserController = exports.updatedUserController = exports.createUserController = exports.getUserController = void 0;
 const user_repository_1 = require("../repositories/user.repository");
 const getUserController = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const userId = req.query.userId;
+    const userId = req.params.userId;
     try {
         const user = yield (0, user_repository_1.getUserRepo)(userId);
         if (user) {
@@ -63,7 +63,7 @@ const updatedUserController = (req, res) => __awaiter(void 0, void 0, void 0, fu
 });
 exports.updatedUserController = updatedUserController;
 const deletedUserController = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const userId = req.query.userId;
+    const userId = req.params.userId;
     try {
         const deleted = yield (0, user_repository_1.deleteUserRepo)(userId);
         if (deleted) {

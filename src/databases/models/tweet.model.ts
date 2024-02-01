@@ -4,7 +4,7 @@ import { ITweetInterface } from "../interfaces/tweet.interface";
 const tweetSchema = new Schema<ITweetInterface>({
     tweetId: {type: String, required:true},
     content: {type: String, default:""},
-    createdAt: {type: Date, required:true},
+    createdAt: {type: String, required:true},
     adminId: {type: String, required:true}
 })
 

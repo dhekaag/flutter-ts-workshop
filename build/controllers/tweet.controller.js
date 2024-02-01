@@ -12,7 +12,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.deletedTweetController = exports.updatedTweetController = exports.createTweetController = exports.getTweetController = void 0;
 const tweet_repository_1 = require("../repositories/tweet.repository");
 const getTweetController = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const tweetId = req.query.tweetId;
+    const tweetId = req.params.tweetId;
     try {
         const tweet = yield (0, tweet_repository_1.getTweetRepo)(tweetId);
         if (tweet) {
@@ -63,7 +63,7 @@ const updatedTweetController = (req, res) => __awaiter(void 0, void 0, void 0, f
 });
 exports.updatedTweetController = updatedTweetController;
 const deletedTweetController = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const tweetId = req.query.tweetId;
+    const tweetId = req.params.tweetId;
     try {
         const deleted = yield (0, tweet_repository_1.deleteTweetRepo)(tweetId);
         if (deleted) {

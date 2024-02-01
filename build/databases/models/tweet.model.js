@@ -27,7 +27,7 @@ const mongoose_1 = __importStar(require("mongoose"));
 const tweetSchema = new mongoose_1.Schema({
     tweetId: { type: String, required: true },
     content: { type: String, default: "" },
-    createdAt: { type: Date, required: true },
+    createdAt: { type: String, required: true },
     adminId: { type: String, required: true }
 });
 const tweetModel = mongoose_1.default.model("TweetModel", tweetSchema);

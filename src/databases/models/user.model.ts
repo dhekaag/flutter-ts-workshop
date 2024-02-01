@@ -8,7 +8,7 @@ const userSchema = new Schema<IUserInterface>({
     lastName: {type: String, default:"Name"},
     email: {type: String, required: true},
     password: {type: String, required: true},
-    createdAt: {type: Date, required: true},
+    createdAt: {type: String, required: true},
 })
 
 const userModel = mongoose.model<IUserInterface>("UserModel", userSchema)

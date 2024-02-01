@@ -8,7 +8,7 @@ import { ITweetInterface } from "../databases/interfaces/tweet.interface";
 import { Request, Response } from "express";
 
 export const getTweetController = async (req: Request, res: Response) => {
-  const tweetId = req.query.tweetId as string;
+  const tweetId = req.params.tweetId as string;
 
   try {
     const tweet = await getTweetRepo(tweetId);
@@ -56,7 +56,7 @@ export const updatedTweetController = async (req: Request, res: Response) => {
 };
 
 export const deletedTweetController = async (req: Request, res: Response) => {
-  const tweetId = req.query.tweetId as string;
+  const tweetId = req.params.tweetId as string;
 
   try {
     const deleted = await deleteTweetRepo(tweetId);

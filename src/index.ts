@@ -4,7 +4,7 @@ import cors from "cors";
 import bodyParser from "body-parser";
 import router from "./routes/routes";
 import dotenv from "dotenv";
-import mongoose from "mongoose";
+import mongoose, { ConnectOptions } from "mongoose";
 
 const app: Express = express();
 const server = http.createServer(app);
@@ -22,12 +22,13 @@ app.set("BASE_URL", "localhost");
 app.use("/api/v1", router);
 
 // ? Mongo Connection
+
 const mongoURI = process.env.MONGO_DB_URI;
 if (!mongoURI) {
   console.error("MongoDB URL is not defined");
   process.exit(1);
 }
-mongoose.set("strictQuery", true);
+// mongoose.set("strictQuery", true);
 mongoose
   .connect(mongoURI, {})
   .then(() => {
