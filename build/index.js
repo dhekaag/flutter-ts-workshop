@@ -27,10 +27,13 @@ if (!mongoURI) {
     console.error("MongoDB URL is not defined");
     process.exit(1);
 }
-mongoose_1.default.set('strictQuery', true);
-mongoose_1.default.connect(mongoURI, {}).then(() => {
+mongoose_1.default.set("strictQuery", true);
+mongoose_1.default
+    .connect(mongoURI, {})
+    .then(() => {
     console.log("MongoDB is connected");
-}).catch((error) => {
+})
+    .catch((error) => {
     console.log(error);
 });
 // ? Start the server

@@ -1,11 +1,12 @@
-// import { Router } from "express";
+import { Router } from "express";
+import { createUserController, deletedUserController, getUserController, updatedUserController } from "../controllers/user.controller";
 
 
-// const userRouter = Router();
+const userRouter = Router();
 
-// userRouter.get("/:userId", (req, res) => {getUserController})
-// userRouter.post("/", createUserController)
-// userRouter.delete("/:userId", deleteUserController)
-// userRouter.put("/", updateUserController)
+userRouter.get("/:userId", getUserController)
+userRouter.post("/", createUserController)
+userRouter.delete("/:userId", deletedUserController)
+userRouter.put("/", updatedUserController)
 
-// export default userRouter;
+export default userRouter;
