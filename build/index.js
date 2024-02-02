@@ -20,7 +20,7 @@ app.use(body_parser_1.default.urlencoded({ extended: true }));
 app.set("PORT", 3000);
 app.set("BASE_URL", "localhost");
 // ? Define the routes
-app.use("/api/v1", routes_1.default);
+app.use("", routes_1.default);
 // ? Mongo Connection
 const mongoURI = process.env.MONGO_DB_URI;
 if (!mongoURI) {

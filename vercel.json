@@ -1,0 +1,15 @@
+{
+    "version": 2,
+    "builds": [
+      {
+        "src": "build/index.js",
+        "use": "npm run start"
+      }
+    ],
+    "routes": [
+      {
+        "src": "/routes(.*)",
+        "dest": "index.js"
+      }
+    ]
+  }

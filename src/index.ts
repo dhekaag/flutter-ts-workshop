@@ -19,7 +19,7 @@ app.set("PORT", 3000);
 app.set("BASE_URL", "localhost");
 
 // ? Define the routes
-app.use("/api/v1", router);
+app.use("", router);
 
 // ? Mongo Connection
 
