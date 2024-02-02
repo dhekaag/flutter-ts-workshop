@@ -4,7 +4,7 @@ const express_1 = require("express");
 const tweet_controller_1 = require("../controllers/tweet.controller");
 const tweetRouter = (0, express_1.Router)();
 tweetRouter.get("/:tweetId", tweet_controller_1.getTweetController);
-// tweetRouter.get("/", (req, res) => {getAllTweetsController})
+tweetRouter.get("/", tweet_controller_1.getAllTweetController);
 tweetRouter.post("/", tweet_controller_1.createTweetController);
 tweetRouter.delete("/:tweetId", tweet_controller_1.deletedTweetController);
 tweetRouter.put("/", tweet_controller_1.updatedTweetController);

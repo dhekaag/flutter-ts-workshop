@@ -9,8 +9,25 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.deletedTweetController = exports.updatedTweetController = exports.createTweetController = exports.getTweetController = void 0;
+exports.deletedTweetController = exports.updatedTweetController = exports.createTweetController = exports.getTweetController = exports.getAllTweetController = void 0;
 const tweet_repository_1 = require("../repositories/tweet.repository");
+const user_repository_1 = require("../repositories/user.repository");
+const getAllTweetController = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const tweet = yield (0, tweet_repository_1.getAllTweetRepo)();
+        if (tweet) {
+            res.status(200).json({ data: tweet });
+        }
+        else {
+            res.status(500).json({ message: "Tweet not found" });
+        }
+    }
+    catch (error) {
+        console.log(error);
+        res.status(500).json({ message: error });
+    }
+});
+exports.getAllTweetController = getAllTweetController;
 const getTweetController = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const tweetId = req.params.tweetId;
     try {
@@ -33,7 +50,13 @@ const createTweetController = (req, res) => __awaiter(void 0, void 0, void 0, fu
     try {
         const success = yield (0, tweet_repository_1.createTweetRepo)(tweet);
         if (success) {
-            res.status(200).json({ data: tweet });
+            const userUpdateSucces = yield (0, user_repository_1.updateUserWithTweetIdRepo)(tweet.adminId, tweet.tweetId);
+            if (userUpdateSucces) {
+                res.status(200).json({ data: tweet });
+            }
+            else {
+                res.status(500).json({ message: "User Not Updated" });
+            }
         }
         else {
             res.status(500).json({ message: "Tweet Not Created" });
@@ -50,7 +73,7 @@ const updatedTweetController = (req, res) => __awaiter(void 0, void 0, void 0, f
     try {
         const updated = yield (0, tweet_repository_1.updateTweetRepo)(updatedTweet.tweetId, updatedTweet);
         if (updated) {
-            res.status(200).json({ data: updated });
+            res.status(200).json({ data: "Tweet updated" });
         }
         else {
             res.status(500).json({ message: "Tweet Not updated" });
@@ -67,14 +90,20 @@ const deletedTweetController = (req, res) => __awaiter(void 0, void 0, void 0, f
     try {
         const deleted = yield (0, tweet_repository_1.deleteTweetRepo)(tweetId);
         if (deleted) {
-            res.status(200).json({ data: "Tweet Deleted" });
+            const updateUserSuccess = yield (0, user_repository_1.updateUserWithDeleteTweetIdRepo)(tweetId);
+            if (updateUserSuccess) {
+                res.status(200).json({ data: "Tweet Deleted" });
+            }
+            else {
+                res.status(500).json({ message: "User Not Updated" });
+            }
         }
         else {
             res.status(500).json({ message: "Tweet Not Deleted" });
         }
     }
     catch (error) {
-        console.log(error);
+        console.error(error);
         res.status(500).json({ message: error });
     }
 });

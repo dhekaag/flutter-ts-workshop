@@ -12,8 +12,19 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.updateTweetRepo = exports.createTweetRepo = exports.deleteTweetRepo = exports.getTweetRepo = void 0;
+exports.getAdminIdFromTweetIdRepo = exports.updateTweetRepo = exports.createTweetRepo = exports.deleteTweetRepo = exports.getTweetRepo = exports.getAllTweetRepo = void 0;
 const tweet_model_1 = __importDefault(require("../databases/models/tweet.model"));
+const getAllTweetRepo = () => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const tweets = yield tweet_model_1.default.find({}); // Menggunakan find tanpa argumen untuk mendapatkan semua tweet
+        return tweets;
+    }
+    catch (error) {
+        console.error(error);
+        return null;
+    }
+});
+exports.getAllTweetRepo = getAllTweetRepo;
 const getTweetRepo = (tweetId) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const tweet = yield tweet_model_1.default.findOne({ tweetId: tweetId });
@@ -70,3 +81,19 @@ const updateTweetRepo = (tweetId, updatedTweet) => __awaiter(void 0, void 0, voi
     }
 });
 exports.updateTweetRepo = updateTweetRepo;
+const getAdminIdFromTweetIdRepo = (tweetId) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const tweet = yield tweet_model_1.default.findOne({ tweetId: tweetId });
+        if (tweet) {
+            return tweet.adminId;
+        }
+        else {
+            return null;
+        }
+    }
+    catch (error) {
+        console.error(error);
+        return null;
+    }
+});
+exports.getAdminIdFromTweetIdRepo = getAdminIdFromTweetIdRepo;

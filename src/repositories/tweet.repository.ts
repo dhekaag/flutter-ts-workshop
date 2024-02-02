@@ -2,6 +2,16 @@ import mongoose from "mongoose";
 import { ITweetInterface } from "../databases/interfaces/tweet.interface";
 import TweetModel from "../databases/models/tweet.model";
 
+export const getAllTweetRepo = async (): Promise<ITweetInterface[] | null> => {
+  try {
+    const tweets = await TweetModel.find({}); // Menggunakan find tanpa argumen untuk mendapatkan semua tweet
+    return tweets;
+  } catch (error) {
+    console.error(error);
+    return null;
+  }
+};
+
 export const getTweetRepo = async (
   tweetId: string
 ): Promise<ITweetInterface | null> => {
@@ -60,5 +70,21 @@ export const updateTweetRepo = async (
   } catch (error) {
     console.log(error);
     return false;
+  }
+};
+
+export const getAdminIdFromTweetIdRepo = async (
+  tweetId: string
+): Promise<string | null> => {
+  try {
+    const tweet = await TweetModel.findOne({ tweetId: tweetId });
+    if (tweet) {
+      return tweet.adminId;
+    } else {
+      return null;
+    }
+  } catch (error) {
+    console.error(error);
+    return null;
   }
 };

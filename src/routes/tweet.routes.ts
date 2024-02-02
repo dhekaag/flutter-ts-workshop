@@ -2,6 +2,7 @@ import { Router } from "express";
 import {
   createTweetController,
   deletedTweetController,
+  getAllTweetController,
   getTweetController,
   updatedTweetController,
 } from "../controllers/tweet.controller";
@@ -9,7 +10,7 @@ import {
 const tweetRouter = Router();
 
 tweetRouter.get("/:tweetId", getTweetController);
-// tweetRouter.get("/", (req, res) => {getAllTweetsController})
+tweetRouter.get("/", getAllTweetController);
 tweetRouter.post("/", createTweetController);
 tweetRouter.delete("/:tweetId", deletedTweetController);
 tweetRouter.put("/", updatedTweetController);
