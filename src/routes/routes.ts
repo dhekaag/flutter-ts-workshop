@@ -7,6 +7,6 @@ const router = Router();
 
 router.use("/user", userRouter);
 router.use("/tweet", tweetRouter);
-router.use("/hello", helloRouter);
+router.use("/", helloRouter);
 
 export default router;
