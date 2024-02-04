@@ -1,7 +1,6 @@
 {
   "version": 2,
-  "name": "flutter-ts-workshop",
   "public": true,
-  "builds": [{ "src": "src/index.ts", "use": "@vercel/node" }],
-  "routes": [{ "src": "/(.*)", "dest": "/src/index.ts" }]
+  "builds": [{ "src": "api/index.ts", "use": "@vercel/node" }],
+  "routes": [{ "src": "/(.*)", "dest": "/api/index.ts" }]
 }
