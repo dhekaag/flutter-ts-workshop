@@ -8,10 +8,11 @@
     "dev": "tsc && nodemon build/index.js",
     "start": "tsc && node build/index.js",
     "build": "tsc ",
-    "serve": "tsc && node build/index.js"
+    "serve": "tsc && node build/index.js",
+    "vercel-build": "tsc"
   },
   "keywords": [],
-  "author": "",
+  "author": "Agung Dwi Kurniyanto",
   "license": "ISC",
   "devDependencies": {
     "@types/cors": "^2.8.17",

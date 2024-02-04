@@ -1,25 +1,11 @@
-import express, { Express } from "express";
 import http from "http";
-import cors from "cors";
-import bodyParser from "body-parser";
-import router from "./routes/routes";
+import app from "./app";
 import dotenv from "dotenv";
 import mongoose, { ConnectOptions } from "mongoose";
 
-const app: Express = express();
 const server = http.createServer(app);
 
 dotenv.config();
-
-// ? Express Configuration
-app.use(cors());
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
-app.set("PORT", 3000);
-app.set("BASE_URL", "localhost");
-
-// ? Define the routes
-app.use("/", router);
 
 // ? Mongo Connection
 
